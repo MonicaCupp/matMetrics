@@ -20,11 +20,11 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
-//Define Routes
+// Define Routes
 const todoRouter = require('./routes/todo'); // This is an example route
 app.use('/todos', todoRouter);
 
 // Start the server
 app.listen(PORT, () => {
-  console.log('Server is running on port: ${PORT}');
+  console.log(`Server is running on port: ${PORT}`);
 });
