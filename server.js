@@ -12,17 +12,19 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB Connection
-// mongoose.connect('mongodb://localhost:27017/mat-metrics', {
-//   useUnifiedTopology: true,
-// });
+mongoose.connect('mongodb://localhost:27017/mat-metrics', {
+  useUnifiedTopology: true,
+  useNewURLParser: true
+});
+
 const connection = mongoose.connection;
 connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
 // Define Routes
-const todoRouter = require('./routes/todo'); // This is an example route
-app.use('/todos', todoRouter);
+const nameRouter = require('./routes/names');
+app.use('/names', nameRouter);
 
 // Start the server
 app.listen(PORT, () => {

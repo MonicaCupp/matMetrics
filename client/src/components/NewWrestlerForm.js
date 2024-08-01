@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import TealButton from './TealButton';
 
 function NewWrestlerForm({onSubmit}) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit({ firstName, lastName });
-    setFirstName('');
-    setLastName('');
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post('http//localhost:5000/names/add', { firstName, lastName });
+      //TODO - Clear form and add success message here
+    } catch (error) {
+      //TODO - Handle error by showing message or whatever
+      console.error(error);
+    }
   };
 
   return (
